@@ -45,7 +45,6 @@ public class ReusableMethods {
 
 
     }
-
     public static void bekle(int saniye){
 
         try {
@@ -54,34 +53,23 @@ public class ReusableMethods {
             throw new RuntimeException(e);
         }
     }
+    public static void titleIleSayfaDegistir(String hedefSayfaTitle){
 
-    public static WebDriver titleIleSayfaDegistir(WebDriver driver, String hedefSayfaTitle){
+        Set<String> tumWhdSeti = Driver.getDriver().getWindowHandles();
 
+        for (String each : tumWhdSeti) {
 
-
-       Set<String> tumWhdSeti = driver.getWindowHandles();
-
-       // burda bir for each loop olusturuyoruz,
-       // each ile tumWhdSetindeki handle degerlerini ele aliyoruz
-       // sonra eger diyoruz, ele aldigimiz her bir eachTitle, hedef sayfa title'a esitse
-       // driver'i bu sayfaya return ile donduruyoruz
-       for (String each: tumWhdSeti
-       ) {
-         String eachTitle = driver.switchTo().window(each).getTitle();
-         if (eachTitle.equals(hedefSayfaTitle)){
-             return driver;
-         }
-
-       }
-        return driver;
+            String eachTitle = Driver.getDriver().switchTo().window(each).getTitle();
+            if (eachTitle.equals(hedefSayfaTitle)){
+                break;
+            }
+        }
     }
-
     public static String IlkSayfaWhdIleIkinciSayfaWhdBul(WebDriver driver, String ilkSayfaWhd) {
 
         Set<String> tumWhdSeti = driver.getWindowHandles();
         tumWhdSeti.remove(ilkSayfaWhd);
-        for (String each:tumWhdSeti
-        ){
+        for (String each:tumWhdSeti){
             return each;
         }
 
@@ -90,8 +78,6 @@ public class ReusableMethods {
                          // o yuzden..
                          // javanin gonlu olsun diye bu return'u ekliyoruz ;)
     }
-
-
     public static void tumSayfaTakeScreenshot(WebDriver driver) {
 
         // tum sayfanin fotografini cekip kaydedin, bunu 4 adimda yapiyoruz..
@@ -119,7 +105,6 @@ public class ReusableMethods {
 
         ReusableMethods.bekle(5);
     }
-
     public static void tumSayfaTakeScreenshot(String testAdi,WebDriver driver){
 
         // tum sayfanin fotografini cekip kaydedin
@@ -159,6 +144,34 @@ public class ReusableMethods {
 
         ReusableMethods.bekle(5);
     }
+    public static void istenenWebelementScreenshot(WebElement istenenWebelement){
 
+        // 1.adim screenshot alacagimiz webelementi locate et
+
+        // 2.adim scrennshot'i kaydedecegimiz file'i olusturalim
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter istenenFormat = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+        String dinamikDosyaYolu = "target/screenshots/istenenWebelementScreenshot" +
+                localDateTime.format(istenenFormat)+
+                ".jpg";
+
+
+        File istenenWebelementScreenshot = new File(dinamikDosyaYolu);
+
+        // 3.adim webelement uzerinden screenshot'i alip gecici bir dosyaya kaydedin
+
+        File geciciDosya = istenenWebelement.getScreenshotAs(OutputType.FILE);
+
+        // 4.adim gecici dosyayi asil dosyaya kopyalayalim
+
+        try {
+            FileUtils.copyFile(geciciDosya,istenenWebelementScreenshot);
+        } catch (IOException e) {
+            System.out.println("Screenshot kopyalanamadi");
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 }
