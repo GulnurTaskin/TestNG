@@ -28,8 +28,14 @@ public class C04_DriverClassKullanimi {
         WebElement aramaSonucElementi = Driver.getDriver().findElement(By.className("product-count-text"));
         System.out.println(aramaSonucElementi.getText());
 
-        Thread.sleep(5000);
+        // Thread.sleep(3000);
 
         Driver.closeDriver();
+
+        // bu testte 3 tane get driver var, bu da 3 defa driver class'ina gidecek demektir
+        // calistirdigimiz zaman, her get driver kullandigimizda yeni bir driver olusturacak
+        // bu sekilde ilerleyen adimlari yapmasi zor
+        // buna bir cozum bulmamiz lazim
+        // bu cozum nerde?: Driver class'indaki ilk bastaki aciklamayi oku, buranin devami olarak ;)
     }
 }

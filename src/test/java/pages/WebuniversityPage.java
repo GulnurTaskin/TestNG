@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
 public class WebuniversityPage {
+    // bu sekilde her web sitesi icin ayri bir locate class'i olusturuyoruz
+    // ilerde ihtiyac oldukca bir web sitesinin 1'den fazla locate class'i olusturabiliriz
 
     public WebuniversityPage(){
         PageFactory.initElements(Driver.getDriver(),this);

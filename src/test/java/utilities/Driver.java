@@ -7,14 +7,14 @@ import java.time.Duration;
 
 public class Driver {
 
-  /* cagrildigi yere bir WebDriver objesi dondurecek
-       getDriver() olusturalim
+  /*    cagrildigi yere bir WebDriver objesi dondurecek
+        getDriver() olusturalim
 
         getDriver() her seferinde
         driver = new ChromeDriver(); satirini calistirirsa
         her kullanimda yeni bir webdriver objesi olusur
 
-        biz ilk kullanimda (yani null iken)yeni webdriver olustursun
+        biz ilk kullanimda (yani null iken) yeni webdriver olustursun
         sonraki kullanimlarda
         atanmis degeri kullansin
      */
@@ -39,9 +39,5 @@ public class Driver {
         driver.close();
     }
 
-    public static void quitDriver() {
-        driver.quit();
-
-
-    }
+    public static void quitDriver() {driver.quit();}
 }
