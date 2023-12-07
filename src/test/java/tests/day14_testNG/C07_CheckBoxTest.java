@@ -22,7 +22,7 @@ public class C07_CheckBoxTest {
         testOtomasyonuFormPage.carpintiCheckboxKutusu.click();
 
         Actions actions = new Actions(Driver.getDriver());
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform(); // aradigimiz webelement'e ulasmak icin sayfada asagi iniyoruz
         ReusableMethods.bekle(2);
         testOtomasyonuFormPage.sirtAgrisiCheckboxKutusu.click();
 
@@ -34,7 +34,7 @@ public class C07_CheckBoxTest {
         //	d. Seker ve Epilepsi checkbox’larininin seçili olmadigini test edin
 
         actions = new Actions(Driver.getDriver());
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform(); // aradigimiz webelement'e ulasmak icin sayfada asagi iniyoruz
         ReusableMethods.bekle(1);
 
         Assert.assertFalse(testOtomasyonuFormPage.epilepsiCheckboxKutusu.isSelected());
