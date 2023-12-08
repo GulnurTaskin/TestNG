@@ -1,18 +1,45 @@
 package tests.day15_configuration_driver_Kullanimi;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pages.TestOtomasyonuPage;
+import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 public class C03_PozitifLoginTesti {
 
+    @Test
     public void pozitifLoginTesti(){
 
         // 1- https://www.testotomasyonu.com/ anasayfasina gidin
 
+        Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
+
         // 2- account linkine basin
-        // 3- Kullanici email’i olarak “wise@gmail.com”girin
-        // 4- Kullanici sifresi olarak “12345" girin
+
+        TestOtomasyonuPage testOtomasyonuPage = new TestOtomasyonuPage();
+        testOtomasyonuPage.accountLinki.click();
+
+        // 3- Kullanici email'i olarak gecerliEmail girin
+
+        testOtomasyonuPage.emailKutusu.sendKeys(ConfigReader.getProperty("toGecerliEmail"));
+
+        // 4- Kullanici sifresi olarak gecerliPassword girin
+
+        testOtomasyonuPage.passwordKutusu.sendKeys(ConfigReader.getProperty("toGecerliPassword"));
+
         // 5- Login butonuna basarak login olun
+
+        ReusableMethods.bekle(1);
+        testOtomasyonuPage.loginButonu.click();
+
         // 6- Basarili olarak giris yapilabildigini test edin
 
+        Assert.assertTrue(testOtomasyonuPage.logoutLinki.isDisplayed());
+        // burada pozitif test yapmis olsuk, negatif test bir sonraki class'ta
+
+        ReusableMethods.bekle(2);
+        Driver.closeDriver();
     }
 }

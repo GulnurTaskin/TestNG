@@ -1,4 +1,4 @@
-package practice;
+package tests.practice;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

@@ -27,6 +27,7 @@ public class C02_configurationPropertiesKullanimi {
         TestOtomasyonuPage testOtomasyonuPage = new TestOtomasyonuPage();
         testOtomasyonuPage.aramaKutusu
                 .sendKeys(ConfigReader.getProperty("toAranacakKelime") + Keys.ENTER);
+
         // 3. arama sonucunda urun bulunabildigini test edin
 
         int bulunanUrunSayisi = testOtomasyonuPage.bulunanUrunElementleriList.size();

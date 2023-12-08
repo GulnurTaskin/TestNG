@@ -10,14 +10,25 @@ import java.time.Duration;
 
 public class Driver {
 
-  /*    cagrildigi yere bir WebDriver objesi dondurecek
+    //public Driver()
+    private Driver() {
+
+        // POM'de Driver class'indaki getDriver() ve closeDriver()'in
+        // static yolla kullanilmasi ongorulmustur.
+        // obje olusturma ile bu method'larin kullanilmamasi
+        // veya obje olusturularak farkli uygulamalarin
+        // POM icinde kullanilmasini engellemek icin Singleton Pattern tercih edilmistir.
+        // o yuzden Driver'i public degil private yapmislar
+    }
+
+    /*  cagrildigi yere bir WebDriver objesi dondurecek
         getDriver() olusturalim
 
         getDriver() her seferinde
         driver = new ChromeDriver(); satirini calistirirsa
         her kullanimda yeni bir webdriver objesi olusur
 
-        biz ilk kullanimda (yani null iken) yeni webdriver olustursun
+        biz ilk kullanimda (yani null iken)yeni webdriver olustursun
         sonraki kullanimlarda
         atanmis degeri kullansin
      */
@@ -26,22 +37,65 @@ public class Driver {
 
     public static WebDriver getDriver(){
 
-       WebDriverManager.chromedriver().setup();
+        String browser = ConfigReader.getProperty("browser");
+
+        /*      getDriver() her seferinde
+                driver = new ChromeDriver(); satirini calistirirsa
+                her kullanimda yeni bir webdriver objesi olusur                                      */
+
+        /*      biz ilk kullanimda (yani null iken)yeni webdriver olustursun
+                sonraki kullanimlarda atanmis degeri kullansin                                        */
+
 
         if (driver == null){
-            driver = new ChromeDriver();
+
+            switch (browser){
+
+                case "firefox" :
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                case "safari"   :
+                    WebDriverManager.safaridriver().setup();
+                    driver = new SafariDriver();
+                    break;
+                case "edge" :
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                    break;
+                default:
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+            }
+
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         }
+
+
 
         return driver;
     }
 
+    // burada driver'i alisageldigimiz sekilde kapatma method'u koyarsak
+    // driver ilk testi yapar ve kapanir
+    // ardindan yapilacak testler icin driver acik olmali
+    // bunun icin kapatma islemini asagidaki gibi bir if ile duzenlememiz gerekir
 
-    public static void closeDriver() {
-        driver.close();
+
+    public static void closeDriver(){
+
+        if (driver != null){
+            driver.close();
+            driver = null;
+        }
     }
 
-    public static void quitDriver() {driver.quit();}
+    public static void quitDriver(){
+
+        if (driver != null){
+            driver.quit();
+            driver = null;
+        }
+    }
 }
