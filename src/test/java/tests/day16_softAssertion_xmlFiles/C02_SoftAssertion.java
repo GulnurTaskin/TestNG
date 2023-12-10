@@ -113,11 +113,14 @@ public class C02_SoftAssertion {
         ReusableMethods.bekle(2);
         Driver.closeDriver();
 
-        // bu testte Page kullaniminin pratikligini goruyoruz
-        // bir defa page sayfamizda locate'leri olusturduktan sonra
-        // yani raflara malzemelerimizi yerlestirince
-        // ihtiyac oldukca alip kullanacagiz
-        // bu sekilde ayni sayfa uzerinde binlerce test senaryosu hazirlayabiliriz
+    /*
+         Bu testte Page kullaniminin pratikligini goruyoruz
+         Bir defa page sayfamizda locate'leri olusturduktan sonra,
+         yani raflara malzemelerimizi yerlestirince
+         ihtiyac oldukca alip kullanacagiz.
+         Bu sekilde ayni sayfa uzerinde binlerce test senaryosu hazirlayabiliriz
+
+    */
     }
 }
 

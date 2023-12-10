@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="istenen package'lari calistirma">
+    
+    <test name="15.gun package">
+        <packages>
+            <package name="tests.day15_configuration_driver_Kullanimi"></package>
+        </packages>
+    </test>
+</suite>
+<!-- Bu sekilde run yapinca sectigimiz package'taki testler yapiliyor-->
+<!-- Tum testleri calistirmak icin package ismi olarak * yazmamiz yeterli-->
