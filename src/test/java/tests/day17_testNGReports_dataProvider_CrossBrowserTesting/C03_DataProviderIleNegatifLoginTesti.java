@@ -17,7 +17,7 @@ public class C03_DataProviderIleNegatifLoginTesti {
 
 
     @DataProvider
-    public static Object[][] kullaniciBilgileriDP() {
+    public static Object[][] kullaniciBilgileriDP() { // iki katli bir array donecek burdan
 
         String[][] kullaniciBilgileri ={{"kullanici1", "12345"},
                 {"kullanici2", "23456"}, {"kullanici3", "34567"},
@@ -26,21 +26,28 @@ public class C03_DataProviderIleNegatifLoginTesti {
         return kullaniciBilgileri;
     }
 
-    @Test(dataProvider = "kullaniciBilgileriDP")
+    @Test(dataProvider = "kullaniciBilgileriDP") // boyle provider yok diyor, olusturalim, ustte
     public void cokluNegatifLoginTesti(String username, String password){
+        // parametre olarak yazdigimiz string degerler nerden gelecek?
+        // bu bilgiler dataProvider'dan gelecek
+
 
         // testotomasyonu anasayfaya gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
+
         // account linkine tiklayin
         TestOtomasyonuPage testOtomasyonuPage = new TestOtomasyonuPage();
         testOtomasyonuPage.accountLinki.click();
+
         // kullanici adi ve sifre olarak verilen listedeki
         // tum degerler icin giris yapilamadigini test edin
-        testOtomasyonuPage.emailKutusu.sendKeys(username);
-        testOtomasyonuPage.passwordKutusu.sendKeys(password);
+        testOtomasyonuPage.emailKutusu.sendKeys(username); // username her seferinde kullanicibilgileri'nden gelecek
+        testOtomasyonuPage.passwordKutusu.sendKeys(password); // password de ayni sekilde
         testOtomasyonuPage.loginButonu.click();
 
         Assert.assertTrue(testOtomasyonuPage.emailKutusu.isDisplayed());
+        // giris yapilamadigini nasil test ediyoruz?
+        // email kutusu hala display ise, ulasilabilir ise giris yapilamamis demektir
 
         ReusableMethods.bekle(2);
 
