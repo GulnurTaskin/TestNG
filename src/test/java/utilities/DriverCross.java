@@ -12,7 +12,9 @@ public class DriverCross {
     }
     public static WebDriver getDriver(String browser){
         browser = browser==null ? ConfigReader.getProperty("browser") : browser ;
-        // bu satir bizim emniyet subabimiz
+        // dinamik browser degerimiz burdan geliyor
+
+        // burasi bizim emniyet subabimiz
         // eger parametre olarak null gonderilirse
         // configuration.properties'deki browser degerini alacak
         if(driver == null){

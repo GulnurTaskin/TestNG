@@ -27,25 +27,31 @@ public class C02 extends TestBaseCross {
 
     @Test
     public void dropdownTesti(){
+
         //● https://testotomasyonu.com/form adresine gidin.
         driver.get("https://testotomasyonu.com/form");
-        //	1.Dogum tarihi gun seçeneğinden index kullanarak 5’i secin
 
+        //	1.Dogum tarihi gun seçeneğinden index kullanarak 5’i secin
+                      // bu kisimlari page'den aliyoruz, TestOtomasyonuFormPage
         List<WebElement> dropdownMenuElementleriList =
                 driver.findElements(By.xpath("//select[@class='form-control']"));
+
         Select selectGun = new Select(dropdownMenuElementleriList.get(0));
         selectGun.selectByIndex(5);
 
         //	2. Dogum tarihi ay seçeneğinden value kullanarak Nisan’i secin
         Select selectAy = new Select(dropdownMenuElementleriList.get(1));
         selectAy.selectByValue("nisan");
+
         //	3. Dogum tarihi yil seçeneğinden visible text kullanarak 1990’i secin
         Select selectYil = new Select(dropdownMenuElementleriList.get(2));
         selectYil.selectByVisibleText("1990");
+
         //	4. Secilen değerleri konsolda yazdirin
         System.out.println(selectGun.getFirstSelectedOption().getText() + "/" +
                 selectAy.getFirstSelectedOption().getText()+"/"+
                 selectYil.getFirstSelectedOption().getText());
+
         //	5. Ay dropdown menüdeki tum değerleri(value) yazdırın
 
         List<String> aylarListesi = ReusableMethods.stringListeDonustur(selectAy.getOptions());
