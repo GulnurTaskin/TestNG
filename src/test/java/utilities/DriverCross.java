@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import java.time.Duration;
+
 public class DriverCross {
     private static WebDriver driver;
     private DriverCross(){
@@ -27,6 +28,7 @@ public class DriverCross {
                     WebDriverManager.safaridriver().setup();
                     driver= new SafariDriver();
                     break;
+
                 case "edge" :
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();

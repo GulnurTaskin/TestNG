@@ -7,7 +7,7 @@ public class C02_DependsOnMethods {
 
     @Test(dependsOnMethods = "testOtomasyonuTesti")
     // depends=baglama, yani youtube testinden once testotomasyonu testi calismali
-    // testptomasyonundan hemen sonra  youtube testi calismak zorunda degil ama
+    // testotomasyonundan hemen sonra  youtube testi calismak zorunda degil ama
     // youtube testinin calisabilmesi icin testotomasyonu testi calismak zorunda
     public void youtubeTesti(){
 

@@ -46,6 +46,12 @@
         <artifactId>extentreports</artifactId>
         <version>4.0.9</version>
     </dependency>
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-opera-driver</artifactId>
+        <version>4.4.0</version>
+        <scope>test</scope>
+    </dependency>
 
 </dependencies>
 </project>

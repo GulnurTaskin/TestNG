@@ -79,7 +79,7 @@ public class C03_AramaTesti {
         /*
         priority ile siralama yapmak her zaman isimizi kolaylastirmaz
         burada priority yaptik ama ilk test fail oldugunda diger testleri yapmaya devam etti.
-        bu de toplamda daha uzun zaman aldi
+        bu da toplamda daha uzun zaman aldi
         bunun yerine depends methodu ile testleri birbirine baglayabiliriz.
         Boylelikle ilk test calismazsa digerine gecmez ve zaman kaybetmeden testimiz sonuclanir
 
